@@ -8,6 +8,8 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import com.utility.Util;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
+
 
 
 
@@ -25,7 +27,9 @@ public class BaseClass {
 	{
 		if(Util.readProperties("browser").equalsIgnoreCase("chrome"))
 		{
-		System.setProperty("webdriver.chrome.driver", "C:/chromedriver.exe");
+	//	System.setProperty("webdriver.chrome.driver", "C:/chromedriver.exe");
+		
+		WebDriverManager.chromedriver().setup();
 		driver = new ChromeDriver();
 		
 		log.info("::::Maximizing Window::::");
@@ -44,7 +48,8 @@ public class BaseClass {
 		
 		else
 		{
-			System.setProperty("webdriver.gecko.driver", "geckodriver.exe");
+			//System.setProperty("webdriver.gecko.driver", "geckodriver.exe");
+			WebDriverManager.firefoxdriver().setup();
 			WebDriver driver = new FirefoxDriver();
 			
 			log.info("::::Maximizing Window::::");
